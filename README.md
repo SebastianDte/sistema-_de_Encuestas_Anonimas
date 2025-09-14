@@ -32,17 +32,16 @@ Durante el desarrollo, se utilizó **PM2 y Nginx** en entornos locales para simu
 
 ## 🧪 Capturas de pantalla
 
-### 🏠 Home
-![Home](https://i.imgur.com/gdoLR6G.png)
+<img src="https://i.imgur.com/gdoLR6G.png" alt="Home" width="600"/>
 
 ### 📝 Crear encuesta
-![Crear encuesta](https://i.imgur.com/sruCyOX.png)
+<img src="https://i.imgur.com/sruCyOX.png" alt="Crear encuesta" width="600"/>
 
 ### 🔗 Enlaces generados
-![Enlaces encuesta](https://i.imgur.com/G6QuiDW.png)
+<img src="https://i.imgur.com/G6QuiDW.png" alt="Enlaces encuesta" width="600"/>
 
 ### 📈 Ver resultados
-![Ver resultados](https://i.imgur.com/6DQsCU3.png)
+<img src="https://i.imgur.com/6DQsCU3.png" alt="Ver resultados" width="600"/>
 
   
 
