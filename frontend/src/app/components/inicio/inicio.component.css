@@ -1,0 +1,135 @@
+.inicio-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  padding: 40px 20px;
+  margin: 0 auto;
+}
+
+.inicio-card {
+  width: 90%;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  background-color: #fafafa;
+}
+
+.inicio-header {
+  border-top: 8px solid #04166a;
+  padding: 42px 24px;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  background-color: #fafafa;
+  justify-content: center;
+}
+
+.inicio-title {
+  font-size: 40px !important;
+  font-weight: 500 !important;
+  text-align: center;
+  margin: 0 !important;
+  letter-spacing: 0.5px;
+}
+
+.inicio-content {
+  padding: 40px 24px !important;
+  background-color: #fafafa;
+  border-left: 8px solid #667eea;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  margin-top: 10px;
+  border-radius: 16px !important;
+  height: 100%;
+}
+
+.caracteristicas-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: center;
+  margin: 20px;
+}
+
+.caracteristica-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 18px;
+  color: #333;
+  font-weight: 500;
+}
+
+.caracteristica-icon {
+  color: #667eea !important;
+  font-size: 24px !important;
+  width: 24px !important;
+  height: 24px !important;
+}
+
+.inicio-actions {
+  margin-top: 40px;
+  padding: 24px !important;
+  display: flex;
+  justify-content: center;
+}
+
+.comenzar-button {
+  box-shadow: 0 4px 16px rgba(102, 126, 234, 0.4) !important;
+  transition: all 0.3s ease !important;
+}
+
+.comenzar-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.8) !important;
+}
+
+@media screen and (max-width: 768px) {
+  .inicio-container {
+    width: 100%;
+    flex-direction: column;
+    padding: 20px 20px; /* Antes era 20px 10px */
+    box-sizing: border-box;
+  }
+
+  .inicio-card {
+    width: 100%;
+    border-radius: 12px;
+    padding: 0 12px; /* Esto es nuevo */
+    box-sizing: border-box;
+  }
+
+  .inicio-header {
+    padding: 24px 16px;
+  }
+
+  .inicio-title {
+    font-size: 24px !important;
+  }
+
+  .inicio-content {
+    padding: 24px 16px !important;
+    border-left: 4px solid #667eea;
+  }
+
+  .caracteristica-item {
+    font-size: 16px;
+  }
+
+  .caracteristica-icon {
+    font-size: 20px !important;
+    width: 20px !important;
+    height: 20px !important;
+  }
+
+  .inicio-actions {
+    padding: 16px !important;
+    margin-top: 24px;
+    flex-direction: column;
+  }
+
+  .comenzar-button {
+    width: 100%;
+    max-width: 280px;
+    font-size: 1rem;
+  }
+}

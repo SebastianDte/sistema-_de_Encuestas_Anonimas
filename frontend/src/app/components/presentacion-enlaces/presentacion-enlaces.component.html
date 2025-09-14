@@ -1,0 +1,137 @@
+<div class="presentacion-enlaces-container">
+  <!-- Header con Material -->
+  <div class="header">
+    <h1 class="mat-display-1">Enlaces de la Encuesta</h1>
+    <p class="mat-body-1">Comparte estos enlaces para que otros puedan acceder a la encuesta y ver los resultados</p>
+  </div>
+
+  <div class="enlaces-section">
+    <!-- Tarjeta para responder -->
+    <mat-card class="enlace-card">
+      <mat-card-header>
+        <mat-card-title>
+          <mat-icon>link</mat-icon>
+          Enlace para Responder
+        </mat-card-title>
+        <mat-card-subtitle>
+          Comparte este enlace para que otros puedan responder la encuesta
+        </mat-card-subtitle>
+      </mat-card-header>
+      
+      <mat-card-content>
+        <!-- Input + botón copiar -->
+        <div class="enlace-container" style="display: flex; align-items: center;">
+          <mat-form-field appearance="outline" class="enlace-field" style="flex-grow: 1; margin-right: 8px;">
+            <mat-label>URL para Responder</mat-label>
+            <input 
+              matInput
+              [value]="window + enlaceRespuesta()" 
+              readonly
+            >
+          </mat-form-field>
+          <button mat-icon-button (click)="copiarAlPortapapeles(window + enlaceRespuesta(), 'respuesta')" color="primary" matTooltip="Copiar enlace">
+            <mat-icon>{{ copiadoRespuesta ? 'check' : 'content_copy' }}</mat-icon>
+          </button>
+        </div>
+
+        <!-- QR para Responder -->
+        <div style="margin-top: 16px; display: flex; justify-content: center;">
+          <qrcode [qrdata]="window + enlaceRespuesta()" [errorCorrectionLevel]="'M'"></qrcode>
+
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- Tarjeta para ver resultados -->
+    <mat-card class="enlace-card">
+      <mat-card-header>
+        <mat-card-title>
+          <mat-icon>analytics</mat-icon>
+          Enlace para Ver Resultados
+        </mat-card-title>
+        <mat-card-subtitle>
+          Comparte este enlace para que otros puedan ver los resultados de la encuesta
+        </mat-card-subtitle>
+      </mat-card-header>
+      
+      <mat-card-content>
+        <!-- Input + botón copiar -->
+        <div class="enlace-container" style="display: flex; align-items: center;">
+          <mat-form-field appearance="outline" class="enlace-field" style="flex-grow: 1; margin-right: 8px;">
+            <mat-label>URL para Resultados</mat-label>
+            <input 
+              matInput
+              [value]="window + enlaceResultado()" 
+              readonly
+            >
+          </mat-form-field>
+          <button mat-icon-button (click)="copiarAlPortapapeles(window + enlaceResultado(), 'resultados')" color="primary" matTooltip="Copiar enlace">
+            <mat-icon>{{ copiadoResultados ? 'check' : 'content_copy' }}</mat-icon>
+          </button>
+        </div>
+
+        <!-- QR para Resultados -->
+        <div style="margin-top: 16px; display: flex; justify-content: center;">
+          <qrcode [qrdata]="window + enlaceResultado()" [errorCorrectionLevel]="'M'"></qrcode>
+
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <!-- Información adicional con expansión -->
+  <mat-expansion-panel class="info-panel">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <mat-icon>info</mat-icon>
+        Información de la Encuesta
+      </mat-panel-title>
+      <mat-panel-description>
+        Detalles técnicos de la encuesta
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    
+    <div class="info-content">
+      <mat-list>
+        <mat-list-item>
+          <mat-icon matListItemIcon>fingerprint</mat-icon>
+          <div matListItemTitle>ID Encuesta</div>
+          <div matListItemLine>{{ idEncuesta }}</div>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>
+          <mat-icon matListItemIcon>key</mat-icon>
+          <div matListItemTitle>Código Respuesta</div>
+          <div matListItemLine>{{ codigoRespuesta }}</div>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>
+          <mat-icon matListItemIcon>verified</mat-icon>
+          <div matListItemTitle>Código Resultados</div>
+          <div matListItemLine>{{ codigoResultados }}</div>
+        </mat-list-item>
+      </mat-list>
+    </div>
+  </mat-expansion-panel>
+
+  <!-- Botones de acción con Material -->
+  <div class="acciones">
+    <button 
+      mat-stroked-button 
+      color="primary"
+      (click)="volver()"
+    >
+      <mat-icon>arrow_back</mat-icon>
+      Volver
+    </button>
+    
+    <button 
+      mat-raised-button 
+      color="primary"
+      (click)="enlaceResultado()"
+    >
+      <mat-icon>bar_chart</mat-icon>
+      Ver Resultados
+    </button>
+  </div>
+</div>

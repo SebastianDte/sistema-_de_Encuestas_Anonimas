@@ -1,0 +1,13 @@
+
+<h2 mat-dialog-title>{{ data.header }}</h2>
+<mat-dialog-content class="confirmation-content">
+    <div class="message-container">
+        <mat-icon class="icon-confirmation">information</mat-icon>
+        <span class="message-text">{{ data.message }}</span>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-raised-button color="primary" (click)="cancelar()">Cancelar</button>
+    <button mat-raised-button color="primary" (click)="aceptar()">Aceptar</button>
+</mat-dialog-actions>
+

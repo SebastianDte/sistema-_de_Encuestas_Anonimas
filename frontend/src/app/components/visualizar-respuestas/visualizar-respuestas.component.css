@@ -1,0 +1,145 @@
+.survey-container {
+  padding: 24px;
+  background-color: #fafafa;
+  min-height: 100vh;
+}
+
+.header-card {
+  margin-bottom: 24px;
+}
+
+.survey-info {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 14px;
+}
+
+.survey-info span {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.survey-id {
+  color: #666;
+}
+
+.no-data-card {
+  margin-bottom: 24px;
+}
+
+.no-data-content {
+  text-align: center;
+  padding: 48px 24px;
+}
+
+.no-data-icon {
+  font-size: 64px;
+  height: 64px;
+  width: 64px;
+  color: #ccc;
+  margin-bottom: 16px;
+}
+
+.tab-content {
+  padding: 24px;
+}
+
+.questions-grid {
+  display: grid;
+  gap: 24px;
+}
+
+.question-card {
+  margin-bottom: 0;
+}
+
+.options-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.option-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.option-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.option-text {
+  font-weight: 500;
+  flex: 1;
+}
+
+.option-stats {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.percentage {
+  font-weight: 600;
+  color: #666;
+}
+
+.option-progress {
+  height: 8px;
+  border-radius: 4px;
+}
+
+.responses-accordion {
+  margin-top: 16px;
+}
+
+.response-panel {
+  margin-bottom: 8px;
+}
+
+.response-content {
+  padding: 16px 0;
+  line-height: 1.6;
+}
+
+.simple-responses {
+  margin-top: 16px;
+}
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+.summary-card {
+  height: 100%;
+}
+
+.summary-content {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.summary-content mat-icon {
+  font-size: 48px;
+  height: 48px;
+  width: 48px;
+}
+
+.summary-text h2, .summary-text h3 {
+  margin: 0 0 8px 0;
+  color: #333;
+}
+
+.summary-text p {
+  margin: 4px 0;
+  color: #666;
+}
+

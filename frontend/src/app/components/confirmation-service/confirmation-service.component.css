@@ -1,0 +1,28 @@
+h2 {
+    text-align: center;
+}
+
+.confirmation-content {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+.message-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.icon-confirmation {
+    color: #2196F3; /* Color azul para información */
+    font-size: 24px;
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0; /* Evita que el ícono se encoja */
+}
+
+.message-text {
+    flex: 1;
+    line-height: 1.4;
+}

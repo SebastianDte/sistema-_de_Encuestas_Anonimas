@@ -1,0 +1,58 @@
+.encuestas-publicas-preview-card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background-color: color-mix(in srgb, var(--primary-color), white 80%);
+  border: 1px solid var(--primary-color);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1rem;
+  padding: 1rem 2rem;
+  transition: 0.25s ease-in-out;
+  flex-wrap: wrap; /* Para que en móvil no se salga */
+}
+
+.col50 {
+  flex: 1 1 50%; /* Para que tome la mitad del ancho, y sea flexible */
+  box-sizing: border-box;
+  padding: 0 1rem; /* Un poco de margen interno para que no quede pegado */
+  min-width: 280px; /* Para que no se achique demasiado en móviles */
+}
+
+.encuestas-publicas-preview-card-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end; /* Para que los botones queden a la derecha */
+  flex-wrap: wrap; /* Para que en móvil se acomoden en filas */
+}
+
+.encuestas-publicas-preview-card-buttons button {
+  background-color: var(--primary-color);
+  color: black;
+  white-space: nowrap; /* Que el texto no haga wrap dentro del botón */
+  flex: 1 1 auto; /* Para que se adapten los botones */
+  min-width: 120px;
+  max-width: 180px;
+}
+@media screen and (max-width: 768px) {
+  .encuestas-publicas-preview-card {
+    flex-direction: column;
+    padding: 1rem;
+  }
+
+  .col50 {
+    flex: 1 1 100%;
+    padding: 0.5rem 0;
+  }
+
+  .encuestas-publicas-preview-card-buttons {
+    justify-content: center;
+    gap: 0.75rem;
+  }
+
+  .encuestas-publicas-preview-card-buttons button {
+    min-width: auto;
+    max-width: 100%;
+    flex: 1 1 auto;
+  }
+}

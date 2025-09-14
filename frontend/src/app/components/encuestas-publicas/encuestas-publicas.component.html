@@ -1,0 +1,8 @@
+<div class="encuestas-publicas-container">
+    <mat-card class="encuestas-publicas-card">
+        <h1>Encuestas públicas</h1>
+        <div *ngFor="let encuesta of encuestas">
+            <encuesta-publica-preview [encuesta]="encuesta"/>
+        </div>
+    </mat-card>
+</div>

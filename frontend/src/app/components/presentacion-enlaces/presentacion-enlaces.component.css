@@ -1,0 +1,86 @@
+.presentacion-enlaces-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.header h1 {
+  margin-bottom: 16px;
+  color: #1976d2;
+}
+
+.header p {
+  margin-bottom: 0;
+  opacity: 0.8;
+}
+
+.enlaces-section {
+  margin-bottom: 32px;
+}
+
+.enlace-card {
+  margin-bottom: 24px;
+  border-left: 8px solid #667eea;
+}
+
+.enlace-card mat-card-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  
+}
+
+.enlace-container {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  margin-top: 16px;
+}
+
+.enlace-field {
+  flex: 1;
+  min-width: 0;
+}
+
+.btn-copiar {
+  flex-shrink: 0;
+  margin-top: 8px;
+}
+
+.btn-copiar mat-icon {
+  margin-right: 8px;
+}
+
+.info-panel {
+  margin-bottom: 32px;
+}
+
+.info-panel mat-panel-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.info-content {
+  margin-top: 16px;
+}
+
+.acciones {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.acciones button {
+  min-width: 140px;
+}
+
+.acciones button mat-icon {
+  margin-right: 8px;
+}

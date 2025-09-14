@@ -1,0 +1,85 @@
+.encuestas-publicas-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 24px;
+  box-sizing: border-box;
+}
+
+.encuestas-publicas-card {
+  width: 100%;
+  max-width: 800px;
+  padding: 24px;
+  background-color: #fafafa;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+}
+
+.encuesta-item {
+  margin-bottom: 20px;
+  padding: 16px;
+  border-left: 6px solid #667eea;
+  border-radius: 12px;
+  background-color: #fff;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.encuesta-item h3 {
+  font-size: 20px;
+  font-weight: 500;
+  margin: 0 0 8px 0;
+  color: #04166a;
+}
+
+.encuesta-item p {
+  margin: 0 0 12px 0;
+  color: #555;
+}
+
+.encuesta-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.encuesta-button {
+  background-color: #667eea;
+  color: #fff;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 16px rgba(102, 126, 234, 0.4);
+}
+
+.encuesta-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.8);
+}
+
+
+@media screen and (max-width: 768px) {
+  .encuestas-publicas-card {
+    padding: 16px;
+  }
+
+  .encuesta-item h3 {
+    font-size: 18px;
+  }
+
+  .encuesta-item p {
+    font-size: 14px;
+  }
+
+  .encuesta-actions {
+    flex-direction: column;
+  }
+
+  .encuesta-button {
+    width: 100%;
+    text-align: center;
+  }
+}

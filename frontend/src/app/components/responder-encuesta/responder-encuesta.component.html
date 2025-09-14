@@ -1,0 +1,64 @@
+<div class="responder-encuesta-container">
+  <mat-card class="responder-encuesta-card" *ngIf="encuesta">
+
+    <div class="responder-encuesta-header">
+      <h1 class="crear-encuesta-title">{{ encuesta.nombre }}</h1>
+    </div>
+
+    <div class="crear-encuesta-content">
+      
+      <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+
+        <div formArrayName="respuestas">
+          <div *ngFor="let pregunta of encuesta.preguntas; let i = index" class="pregunta-container">
+            <mat-card class="pregunta-card" style="padding: 16px;">
+              
+              <p><strong>{{ i + 1 }}. {{ pregunta.texto }}</strong></p>
+              
+              <!-- Pregunta Abierta -->
+              <ng-container *ngIf="pregunta.tipo === 'ABIERTA'">
+                <mat-form-field appearance="fill" class="full-width">
+                  <input matInput [formControlName]="i" placeholder="Escribí tu respuesta acá" />
+                  <mat-error *ngIf="respuestas.at(i).hasError('required') && respuestas.at(i).touched">
+                    La respuesta es obligatoria
+                  </mat-error>
+                </mat-form-field>
+              </ng-container>
+
+              <!-- Opción simple -->
+              <ng-container *ngIf="pregunta.tipo === 'OPCION_MULTIPLE_SELECCION_SIMPLE'">
+                <mat-radio-group [formControlName]="i">
+                  <mat-radio-button *ngFor="let opcion of pregunta.opciones" [value]="opcion.id">
+                    {{ opcion.texto }}
+                  </mat-radio-button>
+                </mat-radio-group>
+                <mat-error *ngIf="respuestas.at(i).hasError('required') && respuestas.at(i).touched">
+                  Tenés que elegir una opción
+                </mat-error>
+              </ng-container>
+
+              <!-- Opción múltiple -->
+              <ng-container *ngIf="pregunta.tipo === 'OPCION_MULTIPLE_SELECCION_MULTIPLE'">
+                <div [formGroupName]="i">
+                  <div *ngFor="let opcion of pregunta.opciones" class="opcion-item">
+                    <mat-checkbox [formControlName]="opcion.id.toString()">
+                      {{ opcion.texto }}
+                    </mat-checkbox>
+                  </div>
+                </div>
+              </ng-container>
+
+            </mat-card>
+          </div>
+        </div>
+
+        <div class="crear-encuesta-actions">
+          <button mat-flat-button color="primary" type="submit" [disabled]="formulario.invalid">
+            Enviar respuestas
+          </button>
+        </div>
+      </form>
+    </div>
+
+  </mat-card>
+</div>

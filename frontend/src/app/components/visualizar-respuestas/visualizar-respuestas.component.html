@@ -1,0 +1,287 @@
+<div class="survey-container">
+  <!-- Header de la encuesta -->
+  <mat-card class="header-card">
+    <mat-card-header>
+      <mat-card-title>
+        <mat-icon>poll</mat-icon>
+        {{ encuestaInfo.nombre || 'Resultados de Encuesta' }}
+      </mat-card-title>
+      <mat-card-subtitle>
+        <div class="survey-info">
+          <span>
+            <mat-icon>people</mat-icon>
+            Total de respuestas: {{ totalRespuestas }}
+          </span>
+          <span class="survey-id">ID: {{ encuestaInfo.id }}</span>
+        </div>
+      </mat-card-subtitle>
+    </mat-card-header>
+  </mat-card>
+
+  <!-- Mensaje cuando no hay datos -->
+  <mat-card *ngIf="resultados.length === 0" class="no-data-card">
+    <mat-card-content>
+      <div class="no-data-content">
+        <mat-icon class="no-data-icon">assessment</mat-icon>
+        <h3>No hay datos disponibles</h3>
+        <p>Aún no se han recibido respuestas para esta encuesta.</p>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <!-- Tabs para organizar el contenido -->
+  <mat-tab-group *ngIf="totalRespuestas > 0" animationDuration="300ms">
+    
+    <!-- Tab de Opciones Únicas -->
+<mat-tab *ngIf="datosVisualizacion.opcionesUnicas?.length > 0">
+  <ng-template mat-tab-label>
+    <mat-icon>radio_button_unchecked</mat-icon>
+    Opciones Únicas ({{ datosVisualizacion.opcionesUnicas.length }})
+  </ng-template>
+
+  <div class="tab-content">
+    <div class="questions-grid">
+      <mat-card *ngFor="let pregunta of datosVisualizacion.opcionesUnicas" class="question-card">
+        <mat-card-header>
+          <mat-card-title>{{ pregunta.pregunta }}</mat-card-title>
+          <mat-card-subtitle>
+            <mat-chip-set>
+              <mat-chip>
+                <mat-icon matChipAvatar>people</mat-icon>
+                {{ pregunta.totalRespuestas }} respuestas
+              </mat-chip>
+            </mat-chip-set>
+          </mat-card-subtitle>
+        </mat-card-header>
+
+        <mat-card-content>
+          <div class="options-list">
+            <div *ngFor="let opcion of pregunta.opciones; let i = index" class="option-item">
+              <div class="option-header">
+                <span class="option-text">{{ opcion.texto }}</span>
+                <span class="option-stats">
+                  <mat-chip [style.background-color]="getChipColor(i)">
+                    {{ opcion.cantidad }}
+                  </mat-chip>
+                  <span class="percentage">{{ opcion.porcentaje }}%</span>
+                </span>
+              </div>
+
+              <mat-progress-bar
+                mode="determinate"
+                [value]="opcion.porcentaje"
+                [color]="getProgressColor(i)"
+                class="option-progress">
+              </mat-progress-bar>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</mat-tab>
+
+<!-- Tab de Opciones Múltiples -->
+<mat-tab *ngIf="datosVisualizacion.opcionesMultiples?.length > 0">
+  <ng-template mat-tab-label>
+    <mat-icon>check_box</mat-icon>
+    Opciones Múltiples ({{ datosVisualizacion.opcionesMultiples.length }})
+  </ng-template>
+
+  <div class="tab-content">
+    <div class="questions-grid">
+      <mat-card *ngFor="let pregunta of datosVisualizacion.opcionesMultiples" class="question-card">
+        <mat-card-header>
+          <mat-card-title>{{ pregunta.pregunta }}</mat-card-title>
+          <mat-card-subtitle>
+            <mat-chip-set>
+              <mat-chip>
+                <mat-icon matChipAvatar>people</mat-icon>
+                {{ pregunta.totalRespuestas }} respuestas
+              </mat-chip>
+            </mat-chip-set>
+          </mat-card-subtitle>
+        </mat-card-header>
+
+        <mat-card-content>
+          <div class="options-list">
+            <div *ngFor="let opcion of pregunta.opciones; let i = index" class="option-item">
+              <div class="option-header">
+                <span class="option-text">{{ opcion.texto }}</span>
+                <span class="option-stats">
+                  <mat-chip [style.background-color]="getChipColor(i)">
+                    {{ opcion.cantidad }}
+                  </mat-chip>
+                  <span class="percentage">{{ opcion.porcentaje }}%</span>
+                </span>
+              </div>
+
+              <mat-progress-bar
+                mode="determinate"
+                [value]="opcion.porcentaje"
+                [color]="getProgressColor(i)"
+                class="option-progress">
+              </mat-progress-bar>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</mat-tab>
+
+
+    <!-- Tab de Respuestas Abiertas -->
+    <mat-tab *ngIf="datosVisualizacion.respuestasAbiertas?.length > 0">
+      <ng-template mat-tab-label>
+        <mat-icon>edit</mat-icon>
+        Respuestas Abiertas ({{ datosVisualizacion.respuestasAbiertas.length }})
+      </ng-template>
+      
+      <div class="tab-content">
+        <div class="questions-grid">
+          <mat-card *ngFor="let pregunta of datosVisualizacion.respuestasAbiertas" 
+                    class="question-card">
+            <mat-card-header>
+              <mat-card-title>{{ pregunta.pregunta }}</mat-card-title>
+              <mat-card-subtitle>
+                <mat-chip-set>
+                  <mat-chip color="accent">
+                    <mat-icon matChipAvatar>comment</mat-icon>
+                    {{ pregunta.totalRespuestas }} respuestas
+                  </mat-chip>
+                </mat-chip-set>
+              </mat-card-subtitle>
+            </mat-card-header>
+
+            <mat-card-content>
+              <mat-accordion class="responses-accordion">
+                <mat-expansion-panel 
+                  *ngFor="let respuesta of pregunta.respuestas; let i = index"
+                  class="response-panel">
+                  
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      <mat-icon>chat_bubble_outline</mat-icon>
+                      Respuesta #{{ i + 1 }}
+                    </mat-panel-title>
+                    <mat-panel-description *ngIf="respuesta.fecha">
+                      {{ respuesta.fecha | date:'dd/MM/yyyy - HH:mm' }}
+                    </mat-panel-description>
+                  </mat-expansion-panel-header>
+
+                  <div class="response-content">
+                    <p>{{ respuesta.texto }}</p>
+                  </div>
+                </mat-expansion-panel>
+              </mat-accordion>
+
+              <!-- Vista alternativa para pocas respuestas -->
+              <div *ngIf="pregunta.respuestas.length <= 3" class="simple-responses">
+                <mat-card-content>
+  <mat-list *ngIf="pregunta.respuestas?.length > 0">
+    <mat-list-item *ngFor="let respuesta of pregunta.respuestas; let i = index">
+      <mat-icon matListItemIcon>chat</mat-icon>
+      
+      <div class="response-text">
+        <div class="response-meta">
+          <strong>Respuesta #{{ i + 1 }}</strong>
+          <span *ngIf="respuesta.fecha" class="response-date">
+            {{ respuesta.fecha | date:'dd/MM/yyyy - HH:mm' }}
+          </span>
+        </div>
+        <div class="response-content" *ngIf="respuesta.texto?.trim(); else noTexto">
+          {{ respuesta.texto }}
+        </div>
+        <ng-template #noTexto>
+          <em class="empty-response">Sin contenido</em>
+        </ng-template>
+      </div>
+    </mat-list-item>
+  </mat-list>
+</mat-card-content>
+
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+    </mat-tab>
+
+    <!-- Tab de Resumen -->
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon>analytics</mat-icon>
+        Resumen
+      </ng-template>
+      
+      <div class="tab-content">
+        <div class="summary-grid">
+          <mat-card class="summary-card total-responses">
+            <mat-card-content>
+              <div class="summary-content">
+                <mat-icon>people</mat-icon>
+                <div class="summary-text">
+                  <h2>{{ totalRespuestas }}</h2>
+                  <p>Total de Respuestas</p>
+                </div>
+              </div>
+            </mat-card-content>
+          </mat-card>
+
+          <mat-card class="summary-card multiple-choice">
+            <mat-card-content>
+              <div class="summary-content">
+                <mat-icon>check_circle</mat-icon>
+                <div class="summary-text">
+                  <h2>{{ datosVisualizacion.opcionesMultiples?.length || 0 }}</h2>
+                  <p>Preguntas de Opción Múltiple</p>
+                </div>
+              </div>
+            </mat-card-content>
+          </mat-card>
+
+          <mat-card class="summary-card open-responses">
+            <mat-card-content>
+              <div class="summary-content">
+                <mat-icon>edit</mat-icon>
+                <div class="summary-text">
+                  <h2>{{ datosVisualizacion.respuestasAbiertas?.length || 0 }}</h2>
+                  <p>Preguntas Abiertas</p>
+                </div>
+              </div>
+            </mat-card-content>
+          </mat-card>
+
+          <mat-card class="summary-card survey-info">
+            <mat-card-content>
+              <div class="summary-content">
+                <mat-icon>info</mat-icon>
+                <div class="summary-text">
+                  <h3>Información de la Encuesta</h3>
+                  <p><strong>Nombre:</strong> {{ encuestaInfo.nombre }}</p>
+                  <p><strong>ID:</strong> {{ encuestaInfo.id }}</p>
+                  <p *ngIf="encuestaInfo.codigoRespuesta">
+                    <strong>Código:</strong> {{ encuestaInfo.codigoRespuesta }}
+                  </p>
+                </div>
+              </div>
+            </mat-card-content>
+          </mat-card>
+
+          <mat-card class="summary-card unique-choice">
+  <mat-card-content>
+    <div class="summary-content">
+      <mat-icon>radio_button_checked</mat-icon>
+      <div class="summary-text">
+        <h2>{{ datosVisualizacion.opcionesUnicas?.length || 0 }}</h2>
+        <p>Preguntas de Opción Única</p>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>
+        </div>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</div>

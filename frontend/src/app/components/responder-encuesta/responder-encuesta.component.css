@@ -1,0 +1,93 @@
+/* Contenedor principal centrado */
+.responder-encuesta-container {
+  display: flex;
+  justify-content: center;
+  padding: 24px 12px;
+}
+
+/* Card donde está toda la encuesta */
+.responder-encuesta-card {
+  width: 90%;
+  max-width: 700px;
+  background-color: #fafafa;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  padding: 24px;
+  box-sizing: border-box;
+}
+
+/* Header de la encuesta con título */
+.responder-encuesta-header {
+  border-top: 8px solid #04166a;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 28px;
+  font-weight: 600;
+  color: #333;
+}
+
+/* Cada pregunta */
+.pregunta-container {
+  margin-bottom: 18px;
+}
+
+/* Card para cada pregunta */
+.pregunta-card {
+  padding: 16px;
+  border-radius: 10px;
+  background-color: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+}
+
+/* Espaciado para opciones */
+.opcion-item {
+  margin-bottom: 12px;
+}
+
+/* Botón enviar */
+.btn-submit {
+  display: block;
+  width: 100%;
+  background-color: #04166a;
+  color: white;
+  padding: 14px;
+  font-size: 18px;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 24px;
+}
+
+.btn-submit:hover {
+  background-color: #30418c;
+}
+
+/* Validaciones - input con error */
+input.ng-invalid.ng-touched,
+textarea.ng-invalid.ng-touched {
+  border-color: #d9534f;
+}
+
+/* Labels */
+.mat-form-field-label {
+  font-weight: 500;
+}
+
+
+.mat-checkbox,
+.mat-radio-button {
+  margin-bottom: 8px;
+}
+
+@media (max-width: 600px) {
+  .responder-encuesta-header {
+    font-size: 20px;
+    padding: 8px 12px;
+    line-height: 1.3;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+}

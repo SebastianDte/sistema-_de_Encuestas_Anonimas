@@ -1,0 +1,96 @@
+<div class="crear-encuesta-container">
+  <mat-card class="crear-encuesta-card">
+    <mat-card-header class="crear-encuesta-header">
+      <mat-card-title class="crear-encuesta-title">Crear Nueva Encuesta</mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="crear-encuesta-content">
+      <form [formGroup]="encuestaForm" (ngSubmit)="onSubmit()">
+        <div>
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Título de la Encuesta</mat-label>
+            <input matInput placeholder="Ingrese el título de su encuesta" formControlName="nombre">
+            <mat-error *ngIf="encuestaForm.get('nombre')?.hasError('required')">El título es obligatorio</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div formArrayName="preguntas">
+          <div *ngFor="let preguntaControl of preguntas.controls; let i = index" [formGroupName]="i"
+            class="pregunta-container">
+            <mat-card class="pregunta-card">
+              <mat-card-content>
+                <h3>Pregunta {{ i + 1 }}</h3>
+
+                <mat-form-field appearance="outline" class="full-width">
+                  <mat-label>Pregunta</mat-label>
+                  <input matInput placeholder="Escriba su pregunta aquí" formControlName="texto">
+                  <mat-error *ngIf="preguntaControl.get('texto')?.hasError('required')">La pregunta es
+                    obligatoria</mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="crear-encuesta-select">
+                  <mat-label>Tipo de Pregunta</mat-label>
+                  <mat-select formControlName="tipo">
+                    <mat-option *ngFor="let tipo of getTipoPregunta()" [value]="tipo.tipo">
+                      {{ tipo.presentacion }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+
+                <div *ngIf="opcionTipoPregunta(preguntaControl.get('tipo')?.value)" formArrayName="opciones">
+                  <h4>Opciones</h4>
+                  <div *ngFor="let opcionControl of getOpciones(i).controls; let j = index" class="opcion-item"
+                    [formGroupName]="j">
+                    <mat-form-field appearance="outline" class="opcion-input">
+                      <mat-label>Opción {{ j + 1 }}</mat-label>
+                      <input matInput formControlName="texto">
+                      <mat-error *ngIf="opcionControl.get('texto')?.hasError('required')">La opción es
+                        obligatoria</mat-error>
+                    </mat-form-field>
+
+                    <button mat-icon-button color="warn" type="button" (click)="eliminarOpcion(i, j)">
+                      <mat-icon>delete</mat-icon>
+                    </button>
+                  </div>
+
+                  <button mat-button color="primary" type="button" (click)="agregarOpcion(i)">Agregar Opción</button>
+                </div>
+
+                <!--<mat-checkbox formControlName="obligatoria">Obligatoria</mat-checkbox>-->
+
+                <div class="pregunta-actions">
+                  <button mat-icon-button color="accent" type="button" *ngIf="preguntas.controls.length > 1"
+                    (click)="eliminarPregunta(i)">
+                    <mat-icon>delete</mat-icon>
+                  </button>
+                </div>
+              </mat-card-content>
+            </mat-card>
+          </div>
+          </div>
+          
+          
+          
+          <div class="settings">
+            <button mat-fab color="primary" type="button" aria-label="Agregar pregunta" (click)="agregarPregunta()">
+              <mat-icon>add</mat-icon>
+            </button>
+            <mat-checkbox formControlName="isPublica">Encuesta Pública</mat-checkbox>
+          </div>
+
+          <div class="enviar-correo-container">
+          <mat-checkbox formControlName="enviarCorreo">Enviar encuesta a mi correo</mat-checkbox>
+             <div *ngIf="encuestaForm.get('enviarCorreo')?.value">
+              <mat-form-field appearance="outline" class="full-width">
+                  <mat-label>Correo Electronico</mat-label>
+                  <input matInput type="email" placeholder="Ingrese su correo electronico aquí" formControlName="correo">
+                </mat-form-field>
+             </div>
+          </div>
+
+        <div class="crear-encuesta-actions">
+          <button mat-raised-button color="primary" type="submit">Crear Encuesta</button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

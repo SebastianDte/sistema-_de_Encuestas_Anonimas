@@ -1,0 +1,34 @@
+<head>
+    <style>
+        * {
+            font-family: Roboto, Helvetica Neue, sans-serif ;
+            padding-bottom: 10px ;
+        }
+        
+        h3{
+            font-size: 2em;
+        }
+
+        div {
+          display: flex;
+          border-top: 8px solid #04166a; 
+          padding: 20px;
+          padding-right: -10px;
+          border-radius: 16px 16px 0 0; 
+          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+          background-color: #fafafa;
+          justify-content: center;
+          align-content: center;
+        }
+    </style>
+</head>
+
+<body>
+ <div> 
+    <h3>Tu encuesta: {{nombreEncuesta}} fue creada con exito!!!</h3>
+    <p>
+     Enviale el siguiente link a las personas que quieras que contesten tu encuesta
+    </p>
+    <h4> {{codigo}} </h4>
+ </div>
+</body>
